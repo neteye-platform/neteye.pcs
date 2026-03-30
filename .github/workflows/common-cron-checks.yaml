@@ -1,0 +1,12 @@
+name: Common Cron Checks
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs daily at midnight
+
+permissions: write-all
+
+jobs:
+  common-cron-checks:
+    uses: neteye-platform/repo-commons/.github/workflows/common-cron-checks.yaml@ad6fd099245bbf08ba3c99a618d23437c419290f # main
+    secrets: inherit
