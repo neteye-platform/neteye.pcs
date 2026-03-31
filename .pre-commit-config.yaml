@@ -59,10 +59,11 @@ repos:
           - --fix
       - id: ruff-format
 
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: e3daa3b1abb0f966fc89f674fdf01eebd84c2eec # frozen: 0.10.12
-    hooks:
-      - id: uv-lock
+  # NOTE: Disable uv pre-commit since we are using Python 3.6 which is not supported by uv.
+  # - repo: https://github.com/astral-sh/uv-pre-commit
+  #   rev: e3daa3b1abb0f966fc89f674fdf01eebd84c2eec # frozen: 0.10.12
+  #   hooks:
+  #     - id: uv-lock
 
   - repo: https://github.com/ansible/ansible-lint
     rev: 8ba9595a4acd1b906eb75568b34f6ef592cd1528 # frozen: v26.3.0

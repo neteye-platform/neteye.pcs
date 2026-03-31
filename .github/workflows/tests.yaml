@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - "*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run Python 3.6 container
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            python:3.6-slim@sha256:b1c46efeb714188f617505d9b76e97c6cb357022ba80591051e4cc4fe5f29977
+            bash -c "pip install -r ./tests/requirements.txt \
+              && ansible-galaxy collection install . --collections-path . \
+              && cd ./ansible_collections/neteye/pcs/ \
+              && ansible-test units --python 3.6 --python-interpreter /usr/bin/python3"

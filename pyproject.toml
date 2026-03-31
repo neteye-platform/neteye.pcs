@@ -1,0 +1,10 @@
+[project]
+name = "neteye.pcs"
+dynamic = ["version"]
+description = "Ansible collection for interacting with PCS clusters."
+readme = "README.md"
+license-files = ["LICENSE-APACHE", "LICENSE-MIT"]
+
+[tool.ruff.lint]
+# TODO: enable linting
+select = []

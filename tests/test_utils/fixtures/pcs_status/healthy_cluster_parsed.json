@@ -1,0 +1,684 @@
+{
+   "Demoting": {},
+   "Migrating": {},
+   "Promoted": {},
+   "Promoting": {},
+   "Started": {
+      "cluster_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": null,
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "grafana": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "grafana_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:grafana-server",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "grafana_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "grafana_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "grafana_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "grafana_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "httpd": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "httpd_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:httpd",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "httpd_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "httpd_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "httpd_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "httpd_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "icinga2-master": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "icinga2-master_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:icinga2-master",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "icinga2-master_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "icinga2-master_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "icinga2-master_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "icinga2-master_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "icingaweb2": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "icingaweb2_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:php-fpm",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "icingaweb2_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "icingaweb2_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "icingaweb2_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "icingaweb2_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "influxdb": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "influxdb_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:influxdb",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "influxdb_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "influxdb_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "influxdb_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "influxdb_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "mariadb": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "mariadb_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:mariadb",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "mariadb_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "mariadb_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "mariadb_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "mariadb_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "nagvis_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nagvis_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "nagvis_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nagvis_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "nats-server": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nats-server_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:nats-server",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "nats-server_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nats-server_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "nats-server_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nats-server_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "nginx": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nginx_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:nginx",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "nginx_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nginx_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "nginx_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "nginx_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "snmptrapd": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "snmptrapd_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:snmptrapd",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "snmptrapd_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "snmptrapd_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "snmptrapd_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "snmptrapd_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "telegraf_tornado_monitoring": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:telegraf_tornado_monitoring.service",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:tornado",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_email_collector": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_email_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:tornado_email_collector",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_email_collector_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_email_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_icinga2_collector": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_icinga2_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:tornado_icinga2_collector",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "tornado_icinga2_collector_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_icinga2_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster2.neteyelocal"
+         ]
+      },
+      "tornado_nats_json_collector": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_nats_json_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:tornado_nats_json_collector",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_nats_json_collector_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_nats_json_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_virt_ip": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::heartbeat:IPaddr2",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_webhook_collector": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_webhook_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "systemd:tornado_webhook_collector",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      },
+      "tornado_webhook_collector_drbd_fs": {
+         "active": "true",
+         "blocked": "false",
+         "failed": "false",
+         "failure_ignored": "false",
+         "group": "tornado_webhook_collector_group",
+         "maintenance": "false",
+         "managed": "true",
+         "nodes_running_on": "1",
+         "orphaned": "false",
+         "resource_agent": "ocf::neteye:Filesystem",
+         "role": "Started",
+         "running_on_nodes": [
+            "neteye-cluster1.neteyelocal"
+         ]
+      }
+   },
+   "Starting": {},
+   "Stopped": {},
+   "Stopping": {},
+   "Unpromoted": {}
+}
