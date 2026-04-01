@@ -1,0 +1,4 @@
+requires_ansible: "<2.17.0"
+
+# Content that Ansible needs to load from another location or that has
+# been deprecated/removed

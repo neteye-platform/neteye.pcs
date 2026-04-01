@@ -1,0 +1,448 @@
+<crm_mon version="2.1.7-5.el8_10">
+  <summary>
+    <stack type="corosync" pacemakerd-state="running"/>
+    <current_dc present="true" version="2.1.7-5.el8_10-0f7f88312" name="neteye-cluster2.neteyelocal" id="2" with_quorum="true" mixed_version="false"/>
+    <last_update time="Wed Jul 17 12:41:30 2024" origin="neteye-cluster1.neteyelocal"/>
+    <last_change time="Wed Jul 17 12:40:27 2024" user="hacluster" client="hacluster" origin="neteye-cluster1.neteyelocal"/>
+    <nodes_configured number="2"/>
+    <resources_configured number="42" disabled="0" blocked="0"/>
+    <cluster_options stonith-enabled="false" symmetric-cluster="true" no-quorum-policy="stop" maintenance-mode="false" stop-all-resources="false" stonith-timeout-ms="60000" priority-fencing-delay-ms="0"/>
+  </summary>
+  <nodes>
+    <node name="neteye-cluster1.neteyelocal" id="1" online="true" standby="false" standby_onfail="false" maintenance="false" pending="false" unclean="false" health="green" feature_set="3.19.0" shutdown="false" expected_up="true" is_dc="false" resources_running="34" type="member"/>
+    <node name="neteye-cluster2.neteyelocal" id="2" online="true" standby="false" standby_onfail="false" maintenance="false" pending="false" unclean="false" health="green" feature_set="3.19.0" shutdown="false" expected_up="true" is_dc="true" resources_running="8" type="member"/>
+  </nodes>
+  <resources>
+    <resource id="cluster_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+      <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+    </resource>
+    <group id="mariadb_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="mariadb_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+      <resource id="mariadb_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+      <resource id="mariadb" resource_agent="systemd:mariadb" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+    </group>
+    <group id="influxdb_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="influxdb_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="influxdb_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="influxdb" resource_agent="systemd:influxdb" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="grafana_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="grafana_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+      <resource id="grafana_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+      <resource id="grafana" resource_agent="systemd:grafana-server" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+    </group>
+    <group id="icinga2-master_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="icinga2-master_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="icinga2-master_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="icinga2-master" resource_agent="systemd:icinga2-master" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="httpd_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="httpd_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="httpd_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="httpd" resource_agent="systemd:httpd" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="icingaweb2_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="icingaweb2_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="icingaweb2_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="icingaweb2" resource_agent="systemd:php-fpm" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="snmptrapd_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="snmptrapd_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="snmptrapd_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="snmptrapd" resource_agent="systemd:snmptrapd" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="nagvis_group" number_resources="2" maintenance="false" managed="true" disabled="false">
+      <resource id="nagvis_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="nagvis_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="nats-server_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="nats-server_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="nats-server_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="nats-server" resource_agent="systemd:nats-server" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="nginx_group" number_resources="3" maintenance="false" managed="true" disabled="false">
+      <resource id="nginx_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="nginx_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="nginx" resource_agent="systemd:nginx" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="tornado_nats_json_collector_group" number_resources="2" maintenance="false" managed="true" disabled="false">
+      <resource id="tornado_nats_json_collector_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="tornado_nats_json_collector" resource_agent="systemd:tornado_nats_json_collector" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="tornado_group" number_resources="4" maintenance="false" managed="true" disabled="false">
+      <resource id="tornado_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="tornado_virt_ip" resource_agent="ocf::heartbeat:IPaddr2" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="tornado" resource_agent="systemd:tornado" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="telegraf_tornado_monitoring" resource_agent="systemd:telegraf_tornado_monitoring.service" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="tornado_email_collector_group" number_resources="2" maintenance="false" managed="true" disabled="false">
+      <resource id="tornado_email_collector_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="tornado_email_collector" resource_agent="systemd:tornado_email_collector" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+    <group id="tornado_icinga2_collector_group" number_resources="2" maintenance="false" managed="true" disabled="false">
+      <resource id="tornado_icinga2_collector_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+      <resource id="tornado_icinga2_collector" resource_agent="systemd:tornado_icinga2_collector" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster2.neteyelocal" id="2" cached="true"/>
+      </resource>
+    </group>
+    <group id="tornado_webhook_collector_group" number_resources="2" maintenance="false" managed="true" disabled="false">
+      <resource id="tornado_webhook_collector_drbd_fs" resource_agent="ocf::neteye:Filesystem" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+      <resource id="tornado_webhook_collector" resource_agent="systemd:tornado_webhook_collector" role="Started" active="true" orphaned="false" blocked="false" maintenance="false" managed="true" failed="false" failure_ignored="false" nodes_running_on="1">
+        <node name="neteye-cluster1.neteyelocal" id="1" cached="true"/>
+      </resource>
+    </group>
+  </resources>
+  <node_history>
+    <node name="neteye-cluster2.neteyelocal">
+      <resource_history id="icinga2-master_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="263" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="46ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_webhook_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="289" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="1182ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_webhook_collector" orphan="false" migration-threshold="1000000">
+        <operation_history call="259" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:04 2024" exec-time="2499ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_nats_json_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="275" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:03 2024" exec-time="1138ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="influxdb_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="249" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="1315ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="httpd_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="269" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="1141ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icinga2-master_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="265" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="1144ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nats-server_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="243" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="111ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="mariadb_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="339" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:01 2024" exec-time="65ms" queue-time="0ms"/>
+        <operation_history call="340" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:39:01 2024" exec-time="37ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_email_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="281" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:04 2024" exec-time="1216ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="grafana_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="335" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:01 2024" exec-time="90ms" queue-time="0ms"/>
+        <operation_history call="336" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:39:01 2024" exec-time="78ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="cluster_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="233" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="190ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_nats_json_collector" orphan="false" migration-threshold="1000000">
+        <operation_history call="255" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:03 2024" exec-time="2453ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icingaweb2_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="239" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="180ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="257" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:01 2024" exec-time="76ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="mariadb_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="329" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:00 2024" exec-time="509ms" queue-time="0ms"/>
+        <operation_history call="338" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:39:01 2024" exec-time="103ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nats-server_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="247" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="1325ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="grafana_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="330" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:00 2024" exec-time="223ms" queue-time="0ms"/>
+        <operation_history call="334" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:39:01 2024" exec-time="116ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nagvis_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="241" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="135ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nginx" orphan="false" migration-threshold="1000000">
+        <operation_history call="245" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="2502ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icingaweb2_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="253" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="1260ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nginx_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="271" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="42ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_icinga2_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="331" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:00 2024" exec-time="116ms" queue-time="0ms"/>
+        <operation_history call="332" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:39:01 2024" exec-time="138ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_icinga2_collector" orphan="false" migration-threshold="1000000">
+        <operation_history call="333" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:03 2024" exec-time="2175ms" queue-time="0ms"/>
+        <operation_history call="342" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:39:03 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="261" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:01 2024" exec-time="1182ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="grafana" orphan="false" migration-threshold="1000000">
+        <operation_history call="337" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:03 2024" exec-time="2195ms" queue-time="0ms"/>
+        <operation_history call="343" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:39:03 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nagvis_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="251" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="1254ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="mariadb" orphan="false" migration-threshold="1000000">
+        <operation_history call="341" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:03 2024" exec-time="2193ms" queue-time="0ms"/>
+        <operation_history call="344" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:39:03 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="influxdb_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="235" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="116ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nginx_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="273" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="1168ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="httpd_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="267" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="39ms" queue-time="0ms"/>
+      </resource_history>
+    </node>
+    <node name="neteye-cluster1.neteyelocal">
+      <resource_history id="snmptrapd_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="244" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="162ms" queue-time="0ms"/>
+        <operation_history call="246" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="115ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icinga2-master_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="275" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:04 2024" exec-time="236ms" queue-time="0ms"/>
+        <operation_history call="278" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="163ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nats-server" orphan="false" migration-threshold="1000000">
+        <operation_history call="570" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:39:33 2024" exec-time="2158ms" queue-time="0ms"/>
+        <operation_history call="571" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:39:33 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_webhook_collector" orphan="false" migration-threshold="1000000">
+        <operation_history call="542" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:55 2024" exec-time="2162ms" queue-time="0ms"/>
+        <operation_history call="543" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:31:55 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_webhook_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="292" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:07 2024" exec-time="228ms" queue-time="0ms"/>
+        <operation_history call="293" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:07 2024" exec-time="178ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_nats_json_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="277" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:04 2024" exec-time="235ms" queue-time="0ms"/>
+        <operation_history call="282" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="283ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="snmptrapd" orphan="false" migration-threshold="1000000">
+        <operation_history call="526" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:24 2024" exec-time="2151ms" queue-time="0ms"/>
+        <operation_history call="527" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:31:24 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="influxdb_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="251" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:01 2024" exec-time="114ms" queue-time="0ms"/>
+        <operation_history call="253" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="102ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="telegraf_tornado_monitoring" orphan="false" migration-threshold="1000000">
+        <operation_history call="534" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:37 2024" exec-time="2163ms" queue-time="0ms"/>
+        <operation_history call="535" task="monitor" rc="0" rc_text="ok" interval="60000ms" last-rc-change="Wed Jul 17 12:31:37 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="httpd_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="273" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:04 2024" exec-time="303ms" queue-time="0ms"/>
+        <operation_history call="279" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="301ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icinga2-master_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="272" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:03 2024" exec-time="273ms" queue-time="0ms"/>
+        <operation_history call="274" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:04 2024" exec-time="252ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nats-server_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="256" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="82ms" queue-time="0ms"/>
+        <operation_history call="258" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="50ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="mariadb_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="329" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:18:39 2024" exec-time="45ms" queue-time="0ms"/>
+        <operation_history call="559" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="44ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_email_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="289" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="576ms" queue-time="0ms"/>
+        <operation_history call="290" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:07 2024" exec-time="287ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="grafana_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="120" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:05:11 2024" exec-time="68ms" queue-time="0ms"/>
+        <operation_history call="563" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="45ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="cluster_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="245" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="79ms" queue-time="0ms"/>
+        <operation_history call="248" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="61ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icinga2-master" orphan="false" migration-threshold="1000000">
+        <operation_history call="494" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:30:18 2024" exec-time="2156ms" queue-time="0ms"/>
+        <operation_history call="495" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:30:18 2024" exec-time="3ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="httpd" orphan="false" migration-threshold="1000000">
+        <operation_history call="478" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:30:07 2024" exec-time="2158ms" queue-time="0ms"/>
+        <operation_history call="489" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:30:07 2024" exec-time="4ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_nats_json_collector" orphan="false" migration-threshold="1000000">
+        <operation_history call="546" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:32:05 2024" exec-time="2155ms" queue-time="0ms"/>
+        <operation_history call="547" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:32:05 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icingaweb2_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="483" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:30:06 2024" exec-time="141ms" queue-time="0ms"/>
+        <operation_history call="486" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:30:06 2024" exec-time="83ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="269" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:03 2024" exec-time="57ms" queue-time="0ms"/>
+        <operation_history call="270" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:03 2024" exec-time="63ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="mariadb_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="325" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:18:39 2024" exec-time="108ms" queue-time="0ms"/>
+        <operation_history call="561" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="1175ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nats-server_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="252" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:01 2024" exec-time="133ms" queue-time="0ms"/>
+        <operation_history call="255" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="91ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado" orphan="false" migration-threshold="1000000">
+        <operation_history call="532" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:35 2024" exec-time="2152ms" queue-time="0ms"/>
+        <operation_history call="533" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:31:35 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="grafana_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="114" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:05:11 2024" exec-time="177ms" queue-time="0ms"/>
+        <operation_history call="565" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="1147ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nagvis_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="521" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:09 2024" exec-time="70ms" queue-time="0ms"/>
+        <operation_history call="522" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:31:09 2024" exec-time="40ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nginx" orphan="false" migration-threshold="1000000">
+        <operation_history call="510" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:00 2024" exec-time="2151ms" queue-time="0ms"/>
+        <operation_history call="511" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:31:00 2024" exec-time="2ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icingaweb2_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="479" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:30:05 2024" exec-time="135ms" queue-time="0ms"/>
+        <operation_history call="482" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:30:05 2024" exec-time="196ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nginx_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="285" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="198ms" queue-time="0ms"/>
+        <operation_history call="288" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="51ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_icinga2_collector_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="327" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:18:39 2024" exec-time="104ms" queue-time="0ms"/>
+        <operation_history call="567" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="1135ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="icingaweb2" orphan="false" migration-threshold="1000000">
+        <operation_history call="518" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:11 2024" exec-time="2159ms" queue-time="0ms"/>
+        <operation_history call="523" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:31:11 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_icinga2_collector" orphan="false" migration-threshold="1000000">
+        <operation_history call="539" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:31:46 2024" exec-time="2ms" queue-time="0ms"/>
+        <operation_history call="557" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="2449ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="267" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:03 2024" exec-time="101ms" queue-time="0ms"/>
+        <operation_history call="268" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:03 2024" exec-time="70ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="snmptrapd_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="247" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="80ms" queue-time="0ms"/>
+        <operation_history call="249" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:00 2024" exec-time="52ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="grafana" orphan="false" migration-threshold="1000000">
+        <operation_history call="463" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:29:58 2024" exec-time="2ms" queue-time="0ms"/>
+        <operation_history call="555" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="2306ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nagvis_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="519" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:31:09 2024" exec-time="118ms" queue-time="0ms"/>
+        <operation_history call="520" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:31:09 2024" exec-time="114ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="mariadb" orphan="false" migration-threshold="1000000">
+        <operation_history call="503" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:30:38 2024" exec-time="1ms" queue-time="0ms"/>
+        <operation_history call="553" task="stop" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:38:59 2024" exec-time="2157ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="influxdb_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="254" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="75ms" queue-time="0ms"/>
+        <operation_history call="257" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:02 2024" exec-time="52ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="influxdb" orphan="false" migration-threshold="1000000">
+        <operation_history call="498" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:30:32 2024" exec-time="6166ms" queue-time="0ms"/>
+        <operation_history call="499" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:30:32 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="nginx_drbd_fs" orphan="false" migration-threshold="1000000">
+        <operation_history call="276" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:04 2024" exec-time="253ms" queue-time="0ms"/>
+        <operation_history call="281" task="monitor" rc="0" rc_text="ok" interval="20000ms" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="255ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="httpd_virt_ip" orphan="false" migration-threshold="1000000">
+        <operation_history call="284" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="218ms" queue-time="0ms"/>
+        <operation_history call="287" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:09:06 2024" exec-time="81ms" queue-time="0ms"/>
+      </resource_history>
+      <resource_history id="tornado_email_collector" orphan="false" migration-threshold="1000000">
+        <operation_history call="577" task="start" rc="0" rc_text="ok" last-rc-change="Wed Jul 17 12:40:30 2024" exec-time="2155ms" queue-time="0ms"/>
+        <operation_history call="578" task="monitor" rc="0" rc_text="ok" interval="30000ms" last-rc-change="Wed Jul 17 12:40:30 2024" exec-time="1ms" queue-time="0ms"/>
+      </resource_history>
+    </node>
+  </node_history>
+</crm_mon>

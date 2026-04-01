@@ -1,0 +1,15 @@
+namespace: neteye
+name: pcs
+version: 1.0.0
+readme: README.md
+authors:
+  - Würth IT Italy
+description: Ansible collection for interacting with PCS clusters
+license:
+  - MIT
+  - Apache-2.0
+tags:
+  - infrastructure
+  - tools
+repository: "https://github.com/neteye-platform/neteye.pcs"
+issues: "https://github.com/neteye-platform/neteye.pcs/issues"
