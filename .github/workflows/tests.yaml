@@ -21,13 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Run Python 3.6 container
+      - name: Run tests with Python 3.6
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            python:3.6-slim@sha256:b1c46efeb714188f617505d9b76e97c6cb357022ba80591051e4cc4fe5f29977
-            bash -c "pip install -r ./tests/requirements.txt \
-              && ansible-galaxy collection install . --collections-path . \
-              && cd ./ansible_collections/neteye/pcs/ \
-              && ansible-test units --python 3.6 --python-interpreter /usr/bin/python3"
+          pip install "ansible-core<2.17"
+          ansible-galaxy collection install . --collections-path .
+          cd ./ansible_collections/neteye/pcs/
+          ansible-test units --python 3.6 --docker
