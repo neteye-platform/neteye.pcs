@@ -373,7 +373,8 @@ def wait_for_resource_stable(
         raise PacemakerError(msg)
 
     # get list of actions
-    actions: List[etree._Element] = root.find("actions") or []
+    actions_elem = root.find("actions")
+    actions: List[etree._Element] = actions_elem if actions_elem is not None else []
     transition: List[etree._Element] = root.find("transition") or []
 
     # for each action check if the resource is in a transaction
@@ -830,7 +831,6 @@ def main() -> None:
     try:
         run_module(module, result)
     except ModuleRuntimeError as e:
-        file_path = None
         with tempfile.NamedTemporaryFile(mode="w", delete=False) as f:
             f.write("".join(ModuleRuntimeError.trace_msgs))
             file_path = f.name

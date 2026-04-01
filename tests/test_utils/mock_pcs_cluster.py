@@ -263,11 +263,11 @@ class MockPcsCluster:
         # set cluster actions and transitions
         for resource in MockPcsCluster.resources:
             action = resource.to_action_xml()
-            if action:
+            if action is not None:
                 actions.append(action)
 
             transition = resource.to_transition_xml()
-            if transition:
+            if transition is not None:
                 transitions.append(transition)
 
         return (0, etree.tostring(root).decode(), "")
