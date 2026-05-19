@@ -69,6 +69,10 @@ repos:
     rev: 5fac056c45595896c973fbde871f01f6cb14d74c # frozen: v26.4.0
     hooks:
       - id: ansible-lint
+        # NOTE: This collection requires ansible-core<2.17, so we need to specify the language version and the additional dependencies.
+        language_version: python3.13
+        additional_dependencies:
+          - ansible-core<2.17
 
   - repo: https://github.com/hadolint/hadolint
     rev: 57e1618d78fd469a92c1e584e8c9313024656623 # frozen: v2.14.0
