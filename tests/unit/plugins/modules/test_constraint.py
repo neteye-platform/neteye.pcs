@@ -59,7 +59,7 @@ class TestConstraints(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.constraints) == 1)
+        self.assertEqual(len(MockPcsCluster.constraints), 1)
 
         con = next(
             c
@@ -68,7 +68,7 @@ class TestConstraints(unittest.TestCase):
             and c.source_resource == source_resource
             and c.dest_resource == dest_resource
         )
-        self.assertTrue(con is not None)
+        self.assertIsNotNone(con)
 
     def test_succeed_when_removing_colocation_constraint(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -102,7 +102,7 @@ class TestConstraints(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.constraints) == 0)
+        self.assertEqual(len(MockPcsCluster.constraints), 0)
 
     def test_no_change_when_colocation_constrain_exists(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -136,7 +136,7 @@ class TestConstraints(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.constraints) == 1)
+        self.assertEqual(len(MockPcsCluster.constraints), 1)
         con = next(
             c
             for c in MockPcsCluster.constraints
@@ -144,7 +144,7 @@ class TestConstraints(unittest.TestCase):
             and c.source_resource == source_resource
             and c.dest_resource == dest_resource
         )
-        self.assertTrue(con is not None)
+        self.assertIsNotNone(con)
 
     def test_no_change_when_colocation_constrain_not_exists(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -162,7 +162,7 @@ class TestConstraints(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.constraints) == 0)
+        self.assertEqual(len(MockPcsCluster.constraints), 0)
 
     def test_succeed_when_creating_order_constraint(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -196,7 +196,7 @@ class TestConstraints(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.constraints) == 1)
+        self.assertEqual(len(MockPcsCluster.constraints), 1)
         con = next(
             c
             for c in MockPcsCluster.constraints
@@ -205,17 +205,17 @@ class TestConstraints(unittest.TestCase):
             and c.dest_resource == dest_resource
         )
 
-        self.assertTrue(
-            con.source_resource_order_type
-            == MockPcsCluster.OrderingConstraint.OrderType.START
+        self.assertEqual(
+            con.source_resource_order_type,
+            MockPcsCluster.OrderingConstraint.OrderType.START,
         )
-        self.assertTrue(
-            con.dest_resource_order_type
-            == MockPcsCluster.OrderingConstraint.OrderType.STOP
+        self.assertEqual(
+            con.dest_resource_order_type,
+            MockPcsCluster.OrderingConstraint.OrderType.STOP,
         )
-        self.assertTrue(
-            con.resource_order_action
-            == MockPcsCluster.OrderingConstraint.ResourceOrderAction.MANDATORY
+        self.assertEqual(
+            con.resource_order_action,
+            MockPcsCluster.OrderingConstraint.ResourceOrderAction.MANDATORY,
         )
         self.assertTrue(not con.order_symmetric)
 
@@ -251,7 +251,7 @@ class TestConstraints(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.constraints) == 1)
+        self.assertEqual(len(MockPcsCluster.constraints), 1)
         con = next(
             c
             for c in MockPcsCluster.constraints
@@ -260,17 +260,17 @@ class TestConstraints(unittest.TestCase):
             and c.dest_resource == dest_resource
         )
 
-        self.assertTrue(
-            con.source_resource_order_type
-            == MockPcsCluster.OrderingConstraint.OrderType.DEMOTE
+        self.assertEqual(
+            con.source_resource_order_type,
+            MockPcsCluster.OrderingConstraint.OrderType.DEMOTE,
         )
-        self.assertTrue(
-            con.dest_resource_order_type
-            == MockPcsCluster.OrderingConstraint.OrderType.START
+        self.assertEqual(
+            con.dest_resource_order_type,
+            MockPcsCluster.OrderingConstraint.OrderType.START,
         )
-        self.assertTrue(
-            con.resource_order_action
-            == MockPcsCluster.OrderingConstraint.ResourceOrderAction.OPTIONAL
+        self.assertEqual(
+            con.resource_order_action,
+            MockPcsCluster.OrderingConstraint.ResourceOrderAction.OPTIONAL,
         )
         self.assertTrue(con.order_symmetric)
 
@@ -314,7 +314,7 @@ class TestConstraints(unittest.TestCase):
             constraint.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.constraints) == 0)
+        self.assertEqual(len(MockPcsCluster.constraints), 0)
 
     def test_fail_if_dest_resource_order_type_is_not_valid(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -478,7 +478,7 @@ class TestConstraints(unittest.TestCase):
             constraint.main()
 
         self.assertFalse(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.constraints) == 1)
+        self.assertEqual(len(MockPcsCluster.constraints), 1)
 
     def test_no_change_when_order_constrain_not_exists(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -495,7 +495,7 @@ class TestConstraints(unittest.TestCase):
             constraint.main()
 
         self.assertFalse(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.constraints) == 0)
+        self.assertEqual(len(MockPcsCluster.constraints), 0)
 
     def test_fail_when_cluster_doesnt_exist(self) -> None:
         MockPcsCluster.cluster["present"] = False
