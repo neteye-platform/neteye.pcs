@@ -137,9 +137,9 @@ class TestQuorum(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
         self.assertTrue(MockPcsCluster.qdevice["present"])
-        self.assertTrue(MockPcsCluster.qdevice["host"] == host)
-        self.assertTrue(MockPcsCluster.qdevice["algorithm"] == algorithm)
-        self.assertTrue(MockPcsCluster.qdevice["model"] == "net")
+        self.assertEqual(MockPcsCluster.qdevice["host"], host)
+        self.assertEqual(MockPcsCluster.qdevice["algorithm"], algorithm)
+        self.assertEqual(MockPcsCluster.qdevice["model"], "net")
 
     def test_fail_when_no_cluster(self):
         MockPcsCluster.cluster["present"] = False

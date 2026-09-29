@@ -61,16 +61,16 @@ class TestResource(unittest.TestCase):
         my_op = [item for sublist in my_op for item in sublist]
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.name == my_name)
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.res_type == my_type)
-        self.assertTrue(set(res.op) == set(my_op))
-        self.assertTrue(set(res.options) == set(my_options))
-        self.assertTrue(res.group is None)
-        self.assertTrue(res.state_applies == [("disable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.name, my_name)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.res_type, my_type)
+        self.assertEqual(set(res.op), set(my_op))
+        self.assertEqual(set(res.options), set(my_options))
+        self.assertIsNone(res.group)
+        self.assertEqual(res.state_applies, [("disable", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_create_new_resource_case_2(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -99,16 +99,16 @@ class TestResource(unittest.TestCase):
         my_options = [my_options]
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.name == my_name)
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.res_type == my_type)
-        self.assertTrue(set(res.op) == set(my_op))
-        self.assertTrue(set(res.options) == set(my_options))
-        self.assertTrue(res.group is None)
-        self.assertTrue(res.state_applies == [("disable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.name, my_name)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.res_type, my_type)
+        self.assertEqual(set(res.op), set(my_op))
+        self.assertEqual(set(res.options), set(my_options))
+        self.assertIsNone(res.group)
+        self.assertEqual(res.state_applies, [("disable", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_create_new_resource_case_3(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -126,16 +126,16 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.name == my_name)
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.res_type == my_type)
-        self.assertTrue(set(res.op) == set())
-        self.assertTrue(set(res.options) == set())
-        self.assertTrue(res.group is None)
-        self.assertTrue(res.state_applies == [("disable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.name, my_name)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.res_type, my_type)
+        self.assertEqual(set(res.op), set())
+        self.assertEqual(set(res.options), set())
+        self.assertIsNone(res.group)
+        self.assertEqual(res.state_applies, [("disable", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_create_new_resource_case_4(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -157,16 +157,16 @@ class TestResource(unittest.TestCase):
         my_options = [my_options]
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.name == my_name)
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.res_type == my_type)
-        self.assertTrue(set(res.op) == set())
-        self.assertTrue(set(res.options) == set(my_options))
-        self.assertTrue(res.group is None)
-        self.assertTrue(res.state_applies == [("disable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.name, my_name)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.res_type, my_type)
+        self.assertEqual(set(res.op), set())
+        self.assertEqual(set(res.options), set(my_options))
+        self.assertIsNone(res.group)
+        self.assertEqual(res.state_applies, [("disable", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_create_new_resource_case_5(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -191,16 +191,16 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.name == my_name)
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.res_type == my_type)
-        self.assertTrue(set(res.op) == set(my_op))
-        self.assertTrue(set(res.options) == set())
-        self.assertTrue(res.group is None)
-        self.assertTrue(res.state_applies == [("disable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.name, my_name)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.res_type, my_type)
+        self.assertEqual(set(res.op), set(my_op))
+        self.assertEqual(set(res.options), set())
+        self.assertIsNone(res.group)
+        self.assertEqual(res.state_applies, [("disable", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_create_new_resource_case_6(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -227,16 +227,16 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.name == my_name)
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.res_type == my_type)
-        self.assertTrue(set(res.op) == set(my_op))
-        self.assertTrue(set(res.options) == set())
-        self.assertTrue(res.group == my_group)
-        self.assertTrue(res.state_applies == [("disable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.name, my_name)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.res_type, my_type)
+        self.assertEqual(set(res.op), set(my_op))
+        self.assertEqual(set(res.options), set())
+        self.assertEqual(res.group, my_group)
+        self.assertEqual(res.state_applies, [("disable", DEFAULT_TIMEOUT)])
 
     def test_fail_when_no_type(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -251,7 +251,7 @@ class TestResource(unittest.TestCase):
         with self.assertRaises(AnsibleFailJson):
             resource.main()
 
-        self.assertTrue(len(MockPcsCluster.resources) == 0)
+        self.assertEqual(len(MockPcsCluster.resources), 0)
 
     def test_no_change_when_resource_exits_and_present_case_1(self) -> None:
         my_name = "my_resource"
@@ -271,9 +271,9 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
-        self.assertTrue(res.state_applies == [])
+        self.assertEqual(res.state_applies, [])
 
     def test_no_change_when_resource_exits_and_present_case_2(self) -> None:
         my_name = "my_resource"
@@ -293,10 +293,10 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
-        self.assertTrue(res.state_applies == [])
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
 
     def test_no_change_when_resource_exits_and_present_case_3(self) -> None:
         my_name = "my_resource"
@@ -322,11 +322,11 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
-        self.assertTrue(res.state_applies == [])
-        self.assertTrue(res.group == my_group)
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [])
+        self.assertEqual(res.group, my_group)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
 
     def test_no_change_when_resource_exits_and_started(self) -> None:
         my_name = "my_resource"
@@ -346,10 +346,10 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
-        self.assertTrue(res.state_applies == [])
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
 
     def test_no_change_when_resource_exits_and_stopped(self) -> None:
         my_name = "my_resource"
@@ -369,10 +369,10 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
-        self.assertTrue(res.state_applies == [])
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
 
     def test_no_change_when_resource_exits(self) -> None:
         my_name = "my_resource"
@@ -403,10 +403,10 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
-        self.assertTrue(res.state_applies == [])
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
 
     def test_no_change_when_resource_not_exists(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -421,7 +421,7 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertFalse(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 0)
+        self.assertEqual(len(MockPcsCluster.resources), 0)
 
     def test_succeed_when_start_resource_case_1(self) -> None:
         my_name = "my_resource"
@@ -440,11 +440,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("enable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("enable", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_start_resource_case_2(self) -> None:
         my_name = "my_resource"
@@ -465,11 +465,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("enable", timeout)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("enable", timeout)])
 
     def test_succeed_when_stop_resource_case_1(self) -> None:
         my_name = "my_resource"
@@ -488,11 +488,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.state_applies == [("disable", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [("disable", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_stop_resource_case_2(self) -> None:
         my_name = "my_resource"
@@ -513,11 +513,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.state_applies == [("disable", timeout)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [("disable", timeout)])
 
     def test_succeed_when_restart_case_1(self) -> None:
         my_name = "my_resource"
@@ -536,11 +536,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("restart", DEFAULT_TIMEOUT)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("restart", DEFAULT_TIMEOUT)])
 
     def test_succeed_when_restart_case_2(self) -> None:
         my_name = "my_resource"
@@ -561,12 +561,12 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
 
-        self.assertTrue(res.state_applies == [("restart", timeout)])
+        self.assertEqual(res.state_applies, [("restart", timeout)])
 
     def test_succeed_when_cleanedup_case_1(self) -> None:
         my_name = "my_resource"
@@ -585,11 +585,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("cleanup", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("cleanup", None)])
 
     def test_succeed_when_cleanedup_case_2(self) -> None:
         my_name = "my_resource"
@@ -611,11 +611,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("cleanup", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("cleanup", None)])
 
     def test_succeed_when_cleanedup_case_3(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -630,7 +630,7 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(MockPcsCluster.cleanup_all_resources_count == 1)
+        self.assertEqual(MockPcsCluster.cleanup_all_resources_count, 1)
 
     def test_no_change_when_cleanedup(self) -> None:
         my_name = "my_resource"
@@ -649,11 +649,11 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertFalse(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [])
 
     def test_fail_if_wildcard_and_not_cleanedup(self) -> None:
         MockPcsCluster.cluster["present"] = True
@@ -729,7 +729,7 @@ class TestResource(unittest.TestCase):
             resource.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(len(MockPcsCluster.resources) == 0)
+        self.assertEqual(len(MockPcsCluster.resources), 0)
 
     def test_fail_if_no_cluster(self) -> None:
         MockPcsCluster.cluster["present"] = False
@@ -762,11 +762,11 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [])
         self.assertTrue(res.managed)
 
     def test_module_leave_stopped_resource_managed(self) -> None:
@@ -788,11 +788,11 @@ class TestResource(unittest.TestCase):
 
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.state_applies == [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [])
         self.assertTrue(res.managed)
 
     def test_module_manage_started_resource(self) -> None:
@@ -817,11 +817,11 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("manage", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("manage", None)])
         self.assertTrue(res.managed)
 
     def test_module_unmanage_started_resource(self) -> None:
@@ -842,11 +842,11 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("unmanage", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("unmanage", None)])
         self.assertFalse(res.managed)
 
     def test_module_manage_stopped_resource(self) -> None:
@@ -871,11 +871,11 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.state_applies == [("manage", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [("manage", None)])
         self.assertTrue(res.managed)
 
     def test_module_unmanage_stopped_resource(self) -> None:
@@ -896,11 +896,11 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.state_applies == [("unmanage", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [("unmanage", None)])
         self.assertFalse(res.managed)
 
     def test_module_fail_if_resource_is_unamanged(self) -> None:
@@ -924,11 +924,11 @@ class TestResource(unittest.TestCase):
         with self.assertRaises(AnsibleFailJson):
             resource.main()
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.state_applies == [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [])
         self.assertFalse(res.managed)
 
     def test_module_not_fail_if_unmanaged_and_desired_resource_1(self) -> None:
@@ -952,12 +952,12 @@ class TestResource(unittest.TestCase):
         with self.assertRaises(AnsibleExitJson) as result:
             resource.main()
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [])
         self.assertFalse(res.managed)
 
     def test_module_not_fail_if_unmanaged_and_desired_resource_2(self) -> None:
@@ -981,12 +981,12 @@ class TestResource(unittest.TestCase):
         with self.assertRaises(AnsibleExitJson) as result:
             resource.main()
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
         self.assertFalse(result.exception.args[0]["changed"])
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.DISABLED)
-        self.assertTrue(res.state_applies == [])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.DISABLED)
+        self.assertEqual(res.state_applies, [])
         self.assertFalse(res.managed)
 
     def test_module_restart_failed_resource_on_all_nodes(self) -> None:
@@ -1007,11 +1007,11 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 1)
+        self.assertEqual(len(MockPcsCluster.resources), 1)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("cleanup", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("cleanup", None)])
 
     def test_timeout_when_resource_in_action(self) -> None:
         my_name = "my_resource"
@@ -1110,11 +1110,11 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 2)
+        self.assertEqual(len(MockPcsCluster.resources), 2)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("cleanup", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("cleanup", None)])
 
     def test_when_other_resource_in_transition(self) -> None:
         my_name = "my_resource"
@@ -1143,11 +1143,11 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 2)
+        self.assertEqual(len(MockPcsCluster.resources), 2)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("cleanup", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("cleanup", None)])
 
     def test_when_other_resource_in_action_and_transition(self) -> None:
         my_name = "my_resource"
@@ -1177,8 +1177,8 @@ class TestResource(unittest.TestCase):
 
         self.assertTrue(result.exception.args[0]["changed"])
 
-        self.assertTrue(len(MockPcsCluster.resources) == 2)
+        self.assertEqual(len(MockPcsCluster.resources), 2)
         res = next(r for r in MockPcsCluster.resources if r.name == my_name)
 
-        self.assertTrue(res.state == MockPcsCluster.Resource.State.STARTED)
-        self.assertTrue(res.state_applies == [("cleanup", None)])
+        self.assertEqual(res.state, MockPcsCluster.Resource.State.STARTED)
+        self.assertEqual(res.state_applies, [("cleanup", None)])

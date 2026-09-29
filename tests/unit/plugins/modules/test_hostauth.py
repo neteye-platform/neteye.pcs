@@ -84,7 +84,7 @@ class TestHostAuth(unittest.TestCase):
             hostauth.main()
 
         self.assertTrue(result.exception.args[0]["changed"])
-        self.assertTrue(host in MockPcsCluster.cluster["authedNodes"])
+        self.assertIn(host, MockPcsCluster.cluster["authedNodes"])
 
     def test_not_changed_when_node_is_already_auth(self):
         MockPcsCluster.cluster["present"] = False
@@ -102,5 +102,5 @@ class TestHostAuth(unittest.TestCase):
             hostauth.main()
 
         self.assertFalse(result.exception.args[0]["changed"])
-        self.assertTrue(host in MockPcsCluster.cluster["authedNodes"])
-        self.assertTrue(len(MockPcsCluster.cluster["authedNodes"]) == 1)
+        self.assertIn(host, MockPcsCluster.cluster["authedNodes"])
+        self.assertEqual(len(MockPcsCluster.cluster["authedNodes"]), 1)

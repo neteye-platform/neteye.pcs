@@ -1,4 +1,4 @@
-from ansible.module_utils.basic import AnsibleModule, missing_required_lib
+from ansible.module_utils.basic import AnsibleModule
 from typing import Tuple
 from lxml import etree
 

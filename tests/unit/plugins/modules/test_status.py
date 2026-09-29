@@ -30,7 +30,8 @@ class TestStatus(unittest.TestCase):
         for file_name in [f for f in os.listdir(fixtures_dir) if f.endswith(".xml")]:
             with self.subTest(file_name=file_name):
                 # Read the raw xml that will be used as input for the ansible module
-                pcs_status_raw_xml = open(os.path.join(fixtures_dir, file_name)).read()
+                with open(os.path.join(fixtures_dir, file_name)) as f:
+                    pcs_status_raw_xml = f.read()
 
                 # Read the expected dictionary that should be extracted from the raw xml above
                 with open(
